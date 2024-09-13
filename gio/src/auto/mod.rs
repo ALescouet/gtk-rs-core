@@ -340,6 +340,9 @@ pub use self::subprocess_launcher::SubprocessLauncher;
 mod tcp_connection;
 pub use self::tcp_connection::TcpConnection;
 
+mod test_dbus;
+pub use self::test_dbus::TestDBus;
+
 mod themed_icon;
 pub use self::themed_icon::ThemedIcon;
 
@@ -569,6 +572,7 @@ pub use self::flags::ResolverNameLookupFlags;
 pub use self::flags::ResourceLookupFlags;
 pub use self::flags::SettingsBindFlags;
 pub use self::flags::SubprocessFlags;
+pub use self::flags::TestDBusFlags;
 pub use self::flags::TlsCertificateFlags;
 pub use self::flags::TlsDatabaseVerifyFlags;
 pub use self::flags::TlsPasswordFlags;

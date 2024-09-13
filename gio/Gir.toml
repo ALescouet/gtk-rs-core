@@ -124,6 +124,8 @@ generate = [
     "Gio.SocketType",
     "Gio.SrvTarget",
     "Gio.TcpConnection",
+    "Gio.TestDBus",
+    "Gio.TestDBusFlags",
     "Gio.TlsAuthenticationMode",
     "Gio.TlsBackend",
     "Gio.TlsCertificate",

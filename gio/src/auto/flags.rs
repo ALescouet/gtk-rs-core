@@ -2728,6 +2728,87 @@ impl From<SubprocessFlags> for glib::Value {
 
 bitflags! {
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+    #[doc(alias = "GTestDBusFlags")]
+    pub struct TestDBusFlags: u32 {
+        #[doc(alias = "G_TEST_DBUS_NONE")]
+        const NONE = ffi::G_TEST_DBUS_NONE as _;
+    }
+}
+
+#[doc(hidden)]
+impl IntoGlib for TestDBusFlags {
+    type GlibType = ffi::GTestDBusFlags;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GTestDBusFlags {
+        self.bits()
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<ffi::GTestDBusFlags> for TestDBusFlags {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GTestDBusFlags) -> Self {
+        Self::from_bits_truncate(value)
+    }
+}
+
+impl StaticType for TestDBusFlags {
+    #[inline]
+    #[doc(alias = "g_test_dbus_flags_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::g_test_dbus_flags_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for TestDBusFlags {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder
+    }
+}
+
+impl glib::value::ValueType for TestDBusFlags {
+    type Type = Self;
+}
+
+unsafe impl<'a> glib::value::FromValue<'a> for TestDBusFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
+    }
+}
+
+impl ToValue for TestDBusFlags {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+impl From<TestDBusFlags> for glib::Value {
+    #[inline]
+    fn from(v: TestDBusFlags) -> Self {
+        ToValue::to_value(&v)
+    }
+}
+
+bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GTlsCertificateFlags")]
     pub struct TlsCertificateFlags: u32 {
         #[doc(alias = "G_TLS_CERTIFICATE_UNKNOWN_CA")]
